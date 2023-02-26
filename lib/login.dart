@@ -12,6 +12,8 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 
 class LoginPage extends StatefulWidget {
@@ -23,6 +25,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   // TODO: Add text editing controllers (101)
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -40,18 +44,49 @@ class _LoginPageState extends State<LoginPage> {
             ),
             const SizedBox(height: 120.0),
             // TODO: Remove filled: true values (103)
-            const TextField(
-              decoration: InputDecoration(filled: true, labelText: 'Username'),
+            TextField(
+              decoration: InputDecoration(
+                filled: true,
+                labelText: 'Username',
+              ),
+              controller: _usernameController,
             ),
             const SizedBox(
               height: 12,
             ),
-            const TextField(
-              decoration: InputDecoration(filled: true, labelText: 'Password'),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(
+                filled: true,
+                labelText: 'Password',
+              ),
               obscureText: true,
-            )
+            ),
+            SizedBox(
+              height: 20,
+            ),
             // TODO: Add TextField widgets (101)
             // TODO: Add button bar (101)
+            OverflowBar(
+              alignment: MainAxisAlignment.end,
+              children: <Widget>[
+                TextButton(
+                    onPressed: () {
+                      _usernameController.clear();
+                      _passwordController.clear();
+                    },
+                    child: const Text('CANCEL')),
+                SizedBox(
+                  width: 20,
+                ),
+                ElevatedButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text('NEXT'),
+                )
+              ],
+            )
           ],
         ),
       ),

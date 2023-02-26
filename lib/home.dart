@@ -23,12 +23,27 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: Return an AsymmetricView (104)
     // TODO: Pass Category variable to AsymmetricView (104)
-    return const Scaffold(
+    return Scaffold(
       // TODO: Add app bar (102)
       // TODO: Add a grid view (102)
       body: Center(
-        child: Text('You did it!'),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text('You did it!'),
+            const SizedBox(
+              height: 30,
+            ),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushNamed(context, '/login');
+              },
+              child: const Text('Logout'),
+            )
+          ],
+        ),
       ),
+      resizeToAvoidBottomInset: false,
       // TODO: Set resizeToAvoidBottomInset (101)
     );
   }
